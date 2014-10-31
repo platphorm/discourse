@@ -1,0 +1,3 @@
+[submodule "plugins/platphorm"]
+	path = plugins/platphorm
+	url = git@git.assembla.com:platform_dev.discourse_plugins.git
