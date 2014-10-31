@@ -157,6 +157,12 @@ gem 'thin', require: false
 gem 'highline', require: false
 gem 'rack-protection' # security
 
+# TODO-DISCOURSE Can't load this from plugin so need to customize discourse (or just add the gem
+# outside of bundler, perhaps)
+# Can be removed once the upgrade is completed
+gem 'mysql2', '0.3.16'
+gem 'paperclip', '~> 2.8' # Same version as main app
+
 # Gems used only for assets and not required
 # in production environments by default.
 # allow everywhere for now cause we are allowing asset debugging in prd

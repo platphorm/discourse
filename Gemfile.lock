@@ -58,6 +58,10 @@ GEM
     celluloid (0.15.2)
       timers (~> 1.1.0)
     certified (0.1.1)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     connection_pool (2.0.0)
     crass (0.2.1)
@@ -185,6 +189,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mustache (0.99.6)
+    mysql2 (0.3.16)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -234,6 +239,27 @@ GEM
     openid-redis-store (0.0.2)
       redis
       ruby-openid
+    paperclip (2.8.0)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.15.1)
     polyglot (0.3.5)
     progress (3.0.0)
@@ -444,6 +470,7 @@ DEPENDENCIES
   mock_redis
   multi_json
   mustache
+  mysql2 (= 0.3.16)
   nokogiri
   oj
   omniauth
@@ -455,6 +482,7 @@ DEPENDENCIES
   omniauth-twitter
   onebox
   openid-redis-store
+  paperclip (~> 2.8)
   pg (= 0.15.1)
   pry-nav
   pry-rails
