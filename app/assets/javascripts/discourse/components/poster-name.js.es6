@@ -25,8 +25,13 @@ var PosterNameComponent = Em.Component.extend({
       if (!Em.isEmpty(primaryGroupName)) {
         linkClass += ' ' + primaryGroupName;
       }
+
+      // ZUNZ Customize to always show the twitter-like username
+      name = Handlebars.Utils.escapeExpression(name);
+      buffer.push("<span class='full-name'><a href='" + url + "' data-auto-route='true'>" + name + "</a></span>");
+
       // Main link
-      buffer.push("<span class='" + linkClass + "'><a href='" + url + "' data-auto-route='true'>" + username + "</a>");
+      buffer.push("<span class='" + linkClass + "'><a href='" + url + "' data-auto-route='true'>(@" + username.toLowerCase() + ")</a>");
 
       // Add a glyph if we have one
       var glyph = this.posterGlyph(post);
@@ -35,11 +40,7 @@ var PosterNameComponent = Em.Component.extend({
       }
       buffer.push("</span>");
 
-      // Are we showing full names?
-      if (name && this.get('displayNameOnPosts') && (this.sanitizeName(name) !== this.sanitizeName(username))) {
-        name = Handlebars.Utils.escapeExpression(name);
-        buffer.push("<span class='full-name'><a href='" + url + "' data-auto-route='true'>" + name + "</a></span>");
-      }
+
 
       // User titles
       var title = post.get('user_title');

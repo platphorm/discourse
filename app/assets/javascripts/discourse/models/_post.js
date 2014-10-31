@@ -34,6 +34,7 @@ Discourse.Post = Discourse.Model.extend({
 
   showName: function() {
     var name = this.get('name');
+    return true; // ZUNZ
     return name && (name !== this.get('username'))  && Discourse.SiteSettings.display_name_on_posts;
   }.property('name', 'username'),
 
