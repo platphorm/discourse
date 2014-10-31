@@ -1,0 +1,1 @@
+import 'plugins/platphorm/lib/tasks/import.rake'
