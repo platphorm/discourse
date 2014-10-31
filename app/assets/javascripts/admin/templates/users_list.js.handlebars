@@ -41,6 +41,7 @@
             <th>{{view Ember.Checkbox checkedBinding="selectAll"}}</th>
           {{/if}}
           <th>&nbsp;</th>
+          <th>Name</th>
           <th>{{i18n username}}</th>
           <th>{{i18n email}}</th>
           <th>{{i18n admin.users.last_emailed}}</th>
@@ -66,7 +67,8 @@
               </td>
             {{/if}}
             <td>{{#link-to 'adminUser' this}}{{avatar this imageSize="small"}}{{/link-to}}</td>
-            <td>{{#link-to 'adminUser' this}}{{unbound username}}{{/link-to}}</td>
+            <td>{{#link-to 'adminUser' this}}{{unbound name}}{{/link-to}}</td>
+            <td style="text-transform: lowercase">{{#link-to 'adminUser' this}}@{{unbound username}}{{/link-to}}</td>
             <td>{{shorten email}}</td>
             <td>{{{unbound last_emailed_age}}}</td>
             <td>{{{unbound last_seen_age}}}</td>
