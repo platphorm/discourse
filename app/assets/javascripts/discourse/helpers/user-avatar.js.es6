@@ -31,7 +31,7 @@ export function renderAvatar(user, options) {
     return Discourse.Utilities.avatarImg({
       size: options.imageSize,
       extraClasses: Em.get(user, 'extras') || options.extraClasses,
-      title: title || username,
+      title: title || name || username, // PH_CUSTOMIZATION: Include name in avatar tool tips
       avatarTemplate: avatarTemplate
     });
   } else {
