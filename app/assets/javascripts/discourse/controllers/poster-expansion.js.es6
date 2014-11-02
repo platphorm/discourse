@@ -4,6 +4,7 @@ export default ObjectController.extend({
   needs: ['topic'],
   visible: false,
   user: null,
+  name: null, // PH_CUSTOMIZATION: Show both username and name in poster expansion
   username: null,
   participant: null,
   avatar: null,
@@ -24,7 +25,8 @@ export default ObjectController.extend({
 
   showMoreBadges: Em.computed.gt('moreBadgesCount', 0),
 
-  show: function(username, uploadedAvatarId) {
+  // PH_CUSTOMIZATION: Show both username and name in poster expansion
+  show: function(name, username, uploadedAvatarId) {
     // XSS protection (should be encapsulated)
     username = username.replace(/[^A-Za-z0-9_]/g, "");
     var url = "/users/" + username;
@@ -39,16 +41,19 @@ export default ObjectController.extend({
         wasVisible = this.get('visible');
 
     if (uploadedAvatarId) {
-      this.set('avatar', {username: username, uploaded_avatar_id: uploadedAvatarId});
+      // PH_CUSTOMIZATION: Show both username and name in poster expansion
+      this.set('avatar', {name: 'ZUNZ_name', username: username, uploaded_avatar_id: uploadedAvatarId});
     } else {
       this.set('avatar', null);
     }
 
-    this.setProperties({visible: true, username: username});
+    // PH_CUSTOMIZATION: Show both username and name in poster expansion
+    this.setProperties({visible: true, name: name, username: username});
 
     // If we click the avatar again, close it.
     if (username === currentUsername && wasVisible) {
-      this.setProperties({ visible: false, username: null, avatar: null });
+      // PH_CUSTOMIZATION: Show both username and name in poster expansion
+      this.setProperties({ visible: false, name: null, username: null, avatar: null });
       return;
     }
 

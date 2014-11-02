@@ -15,12 +15,14 @@ Discourse.TopicRoute = Discourse.Route.extend({
   actions: {
     // Modals that can pop up within a topic
     expandPostUser: function(post) {
-      this.controllerFor('poster-expansion').show(post.get('username'), post.get('uploaded_avatar_id'));
+      alert('ZUNZ topic_route action 1');
+      this.controllerFor('poster-expansion').show(post.get('name'), post.get('username'), post.get('uploaded_avatar_id'));
     },
 
     expandPostUsername: function(username) {
       username = username.replace(/^@/, '');
       if (!Em.isEmpty(username)) {
+        alert('ZUNZ topic route 2');
         this.controllerFor('poster-expansion').show(username);
       }
     },

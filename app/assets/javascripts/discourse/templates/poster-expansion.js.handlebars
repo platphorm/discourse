@@ -2,12 +2,10 @@
   {{#link-to 'user' user}}{{bound-avatar avatar "huge"}}{{/link-to}}
 
   <div class="names">
-    <h1 {{bind-attr class="staff new_user"}}>ZUNZ2
-      {{#link-to 'user' user}}{{username}}{{/link-to}}
+    <h1 {{bind-attr class="staff new_user"}}>
+      {{#link-to 'user' user}}{{name}}{{/link-to}}
     </h1>
-    {{#if showName}}
-      <h2>ZUNZ1 {{#link-to 'user' user}}{{name}}{{/link-to}}</h2>
-    {{/if}}
+    <h2 style="text-transform: lowercase">{{#link-to 'user' user}}(@{{username}}){{/link-to}}</h2>
   </div>
 
   {{#if showBadges}}

@@ -13,7 +13,8 @@ var ApplicationRoute = Em.Route.extend({
     },
 
     expandUser: function(user) {
-      this.controllerFor('poster-expansion').show(user.get('username'), user.get('uploaded_avatar_id'));
+      // PH_CUSTOMIZATION: Add name to parameter list
+      this.controllerFor('poster-expansion').show(user.get('name'), user.get('username'), user.get('uploaded_avatar_id'));
       return true;
     },
 
