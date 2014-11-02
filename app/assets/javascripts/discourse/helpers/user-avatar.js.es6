@@ -2,6 +2,9 @@ export function renderAvatar(user, options) {
   options = options || {};
 
   if (user) {
+    // PH_CUSTOMIZATION: Include name in default serialization. Used for avatar tool tips
+    var name = Em.get(user, 'name');
+    if (!name) name = Em.get(user, 'user.name');
     var username = Em.get(user, 'username');
     if (!username) username = Em.get(user, options.usernamePath);
 
@@ -15,8 +18,8 @@ export function renderAvatar(user, options) {
         var description = Em.get(user, 'description');
         // if a description has been provided
         if (description && description.length > 0) {
-          // preprend the username before the description
-          title = username + " - " + description;
+          // prepend the name before the description
+          title = (name || username) + " - " + description;
         }
       }
     }

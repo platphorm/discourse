@@ -14,6 +14,7 @@ class AvatarLookup
   def self.lookup_columns
     @lookup_columns ||= [:id,
                          :email,
+                         :name, # PH_CUSTOMIZATION: Include name in lookup
                          :username,
                          :uploaded_avatar_id]
   end
