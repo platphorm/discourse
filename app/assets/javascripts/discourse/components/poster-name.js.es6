@@ -26,7 +26,7 @@ var PosterNameComponent = Em.Component.extend({
         linkClass += ' ' + primaryGroupName;
       }
 
-      // ZUNZ Customize to always show the twitter-like username
+      // PH_CUSTOMIZATION: Customize to always show the twitter-like username
       name = Handlebars.Utils.escapeExpression(name);
       buffer.push("<span class='full-name'><a href='" + url + "' data-auto-route='true'>" + name + "</a></span>");
 

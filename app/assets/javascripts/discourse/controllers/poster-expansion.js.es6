@@ -42,7 +42,7 @@ export default ObjectController.extend({
 
     if (uploadedAvatarId) {
       // PH_CUSTOMIZATION: Show both username and name in poster expansion
-      this.set('avatar', {name: 'ZUNZ_name', username: username, uploaded_avatar_id: uploadedAvatarId});
+      this.set('avatar', {username: username, uploaded_avatar_id: uploadedAvatarId});
     } else {
       this.set('avatar', null);
     }

@@ -21,7 +21,6 @@ Discourse.TopicRoute = Discourse.Route.extend({
     expandPostUsername: function(username) {
       username = username.replace(/^@/, '');
       if (!Em.isEmpty(username)) {
-        alert('ZUNZ topic route 2');
         this.controllerFor('poster-expansion').show(username);
       }
     },

@@ -11,7 +11,6 @@ class AdminUserSerializer < BasicUserSerializer
              :trust_level,
              :flag_level,
              :username,
-             :name, # ZUNZ
              :title,
              :avatar_template,
              :can_approve,

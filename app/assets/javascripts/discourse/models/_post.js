@@ -33,9 +33,7 @@ Discourse.Post = Discourse.Model.extend({
   userDeleted: Em.computed.empty('user_id'),
 
   showName: function() {
-    var name = this.get('name');
-    return true; // ZUNZ
-    return name && (name !== this.get('username'))  && Discourse.SiteSettings.display_name_on_posts;
+    return true; // PH_CUSTOMIZATION
   }.property('name', 'username'),
 
   postDeletedBy: function() {
