@@ -1,6 +1,6 @@
 class BasicUserSerializer < ApplicationSerializer
   # PH_CUSTOMIZATION: Include name in default serialization. Used for avatar tool tips
-  attributes :id, :username, :name, :uploaded_avatar_id, :avatar_template
+  attributes :id, :name, :username, :uploaded_avatar_id, :avatar_template
 
   def include_name?
     SiteSetting.enable_names?
