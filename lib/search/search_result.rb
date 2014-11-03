@@ -16,11 +16,11 @@ class Search
     def initialize(row)
       row.symbolize_keys!
       @type = row[:type].to_sym
-      @url, @id, @title, @topic_id, @blurb = row[:url], row[:id], row[:title], row[:topic_id], row[:blurb]
+      @url, @id, @title, @name, @topic_id, @blurb = row[:url], row[:id], row[:title], row[:name], row[:topic_id], row[:blurb]
     end
 
     def as_json(options = nil)
-      json = {id: @id, title: @title, url: @url}
+      json = {id: @id, title: @title, name: @name, url: @url} # PH_CUSTOMIZATION: Pass through the name
       [ :avatar_template,
         :uploaded_avatar_id,
         :color,
@@ -44,7 +44,8 @@ class Search
       SearchResult.new(
         type: :user,
         id: u.username_lower,
-        title: u.username,
+        title: u.username, # PH_CUSTOMIZATION:
+        name: u.name, # PH_CUSTOMIZATION:
         url: "/users/#{u.username_lower}").tap do |r|
           r.uploaded_avatar_id = u.uploaded_avatar_id
           r.avatar_template = u.avatar_template
