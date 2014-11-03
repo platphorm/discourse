@@ -71,7 +71,7 @@ Discourse.Composer = Discourse.Model.extend({
       postDescription = I18n.t('post.' +  this.get('action'), {
         link: postLink,
         replyAvatar: Discourse.Utilities.tinyAvatar(post.get('avatar_template')),
-        username: this.get('post.username')
+        username: this.get('post.name') // PH-CUSTOMIZATION: Was post.username, show name here instead
       });
 
       if (!Discourse.Mobile.mobileView) {
