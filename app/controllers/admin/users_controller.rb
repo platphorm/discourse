@@ -212,6 +212,19 @@ class Admin::UsersController < Admin::AdminController
     render json: location
   end
 
+  # PH_CUSTOMIZATIONS: Temporary, until sync_sso moves into stable branch
+  def sync_sso
+    unless SiteSetting.enable_sso
+      render nothing: true, status: 404
+      return
+    end
+
+    sso = DiscourseSingleSignOn.parse("sso=#{params[:sso]}&sig=#{params[:sig]}")
+    user = sso.lookup_or_create_user
+
+    render_serialized(user, AdminDetailedUserSerializer, root: false)
+  end
+
   private
 
     def fetch_user

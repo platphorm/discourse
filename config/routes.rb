@@ -30,6 +30,9 @@ Discourse::Application.routes.draw do
   get "srv/status" => "forums#status"
 
   namespace :admin, constraints: StaffConstraint.new do
+    # PH_CUSTOMIZATION: Temporary, as sync_sso is not currently in stable branch
+    post "users/sync_sso" => "users#sync_sso", constraints: AdminConstraint.new
+
     get "" => "admin#index"
 
     resources :site_settings, constraints: AdminConstraint.new do
