@@ -3,7 +3,11 @@ require_dependency 'rate_limiter'
 class SessionController < ApplicationController
 
   skip_before_filter :redirect_to_login_if_required
-  skip_before_filter :check_xhr, only: ['sso', 'sso_login']
+
+  # PH_CUSTOMIZATIONS: The xhr check does not seem reliable when issued from NF
+  # PH_CUSTOMIZATIONS: Disable the CSRF check
+  skip_before_filter :check_xhr, only: ['sso', 'sso_login', 'destroy']
+  skip_before_filter :verify_authenticity_token, only: :destroy
 
   def csrf
     render json: {csrf: form_authenticity_token }
