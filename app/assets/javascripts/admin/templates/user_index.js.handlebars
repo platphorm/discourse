@@ -1,8 +1,9 @@
 <section class='details'>
 
+  <!--PH_CUSTOMIZATION: Show name, username and NF user ID here-->
   <div class='display-row'>
-    <div class='field'>{{i18n user.username.title}}</div>
-    <div class='value'>{{username}}</div>
+    <div class='field'>Name</div>
+    <div class='value'>{{name}}</div>
     <div class='controls'>
       {{#link-to 'user' model class="btn"}}
         <i class='fa fa-user'></i>
@@ -21,6 +22,16 @@
       </button>
       {{/if}}
     </div>
+  </div>
+
+  <div class='display-row'>
+    <div class='field'>{{i18n user.username.title}}</div>
+    <div class='value' style='text-transform: lowercase'>@{{username}}</div>
+  </div>
+
+  <div class='display-row'>
+    <div class='field'>NF User ID</div>
+    <div class='value'>{{import_id}}</a></div>
   </div>
 
   <div class='display-row'>
