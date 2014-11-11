@@ -11,6 +11,7 @@ class AdminUserSerializer < BasicUserSerializer
              :trust_level,
              :flag_level,
              :username,
+             :import_id, # PH_CUSTOMIZATION Added this import_id attribute
              :title,
              :avatar_template,
              :can_approve,
@@ -33,6 +34,12 @@ class AdminUserSerializer < BasicUserSerializer
     define_method sym do
       object.user_stat.send(sym)
     end
+  end
+
+  # PH_CUSTOMIZATION Added this import_id attribute
+  # See also matching changes in users_list.js.handlebars, where this value (and name) is displayed
+  def import_id
+    object.custom_fields['import_id']
   end
 
   def suspended
