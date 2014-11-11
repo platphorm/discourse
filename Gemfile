@@ -157,6 +157,7 @@ gem 'thin', require: false
 gem 'highline', require: false
 gem 'rack-protection' # security
 
+# PH_CUSTOMIZATION: Gems used during NF -> DC data import
 # TODO-DISCOURSE Can't load this from plugin so need to customize discourse (or just add the gem
 # outside of bundler, perhaps)
 # Can be removed once the upgrade is completed

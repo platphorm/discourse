@@ -126,9 +126,11 @@ class DiscourseSingleSignOn < SingleSignOn
       avatar_force_update.to_i != 0 ||
       sso_record.external_avatar_url != avatar_url)
       begin
-        tempfile = FileHelper.download(avatar_url, 1.megabyte, "sso-avatar")
+        # PH_CUSTOMIZATION: Follow the redirect. Listing cards are served via redirects from fm (added true)
+        tempfile = FileHelper.download(avatar_url, 1.megabyte, "sso-avatar", true)
 
-        upload = Upload.create_for(user.id, tempfile, "external-avatar", File.size(tempfile.path), { origin: avatar_url })
+        # PH_CUSTOMIZATION: Need to specify .jpg here, as the type of the file is checked in create_for
+        upload = Upload.create_for(user.id, tempfile, "external-avatar.jpg", File.size(tempfile.path), { origin: avatar_url })
 
         user.uploaded_avatar_id = upload.id
 
