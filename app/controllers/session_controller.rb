@@ -4,7 +4,8 @@ class SessionController < ApplicationController
 
   skip_before_filter :redirect_to_login_if_required
 
-  # PH_CUSTOMIZATIONS: The xhr check does not seem reliable when issued from NF
+  # PH_CUSTOMIZATIONS: The xhr? check does not seem reliable when issued from NF logouts
+  # This is some ajax peculiarity, so add 'destroy' here
   skip_before_filter :check_xhr, only: ['sso', 'sso_login', 'destroy']
 
   # PH_CUSTOMIZATIONS: Disable the CSRF check for the preflight on destroy
