@@ -173,6 +173,10 @@ Discourse::Application.routes.draw do
   get "email/unsubscribe/:key" => "email#unsubscribe", as: "email_unsubscribe"
   post "email/resubscribe/:key" => "email#resubscribe", as: "email_resubscribe"
 
+  # PH_CUSTOMIZATION: Ensure the preflight request can be satisfied (i.e. add :options here)
+  # ZUNZ
+  match "session/anyid" => "session#destroy", via: [:options]
+
   resources :session, id: USERNAME_ROUTE_FORMAT, only: [:create, :destroy] do
     collection do
       post "forgot_password"
