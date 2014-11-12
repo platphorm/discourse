@@ -71,7 +71,7 @@
             <td>{{#link-to 'adminUser' this}}{{avatar this imageSize="small"}}{{/link-to}}</td>
             <td>{{#link-to 'adminUser' this}}{{unbound name}}{{/link-to}}</td>
             <td style="text-transform: lowercase">{{#link-to 'adminUser' this}}@{{unbound username}}{{/link-to}}</td>
-            <td style="text-align: right">{{unbound import_id}}</td>
+            <td style="text-align: right"><a href="https://tools.niteflirt.com/admin/accounts/search?type=5&&text={{unbound import_id}}">{{unbound import_id}}</a></td>
             <td>{{shorten email}}</td>
             <td>{{{unbound last_emailed_age}}}</td>
             <td>{{{unbound last_seen_age}}}</td>
