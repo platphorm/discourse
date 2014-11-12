@@ -7,8 +7,9 @@ class SessionController < ApplicationController
   # PH_CUSTOMIZATIONS: The xhr check does not seem reliable when issued from NF
   skip_before_filter :check_xhr, only: ['sso', 'sso_login', 'destroy']
 
-  # PH_CUSTOMIZATIONS: Disable the CSRF check. ZUNZ Should be able to re-enable this, perhaps using better credentials when fetching csrf
+  # PH_CUSTOMIZATIONS: Disable the CSRF check for the preflight on destroy
   skip_before_filter :verify_authenticity_token, only: :destroy
+  before_filter :verify_authenticity_token_on_destroy, only: :destroy
 
   # PH_CUSTOMIZATIONS: Try to get CORS working
   # See http://www.tsheffler.com/blog/?p=428
@@ -178,16 +179,9 @@ class SessionController < ApplicationController
     render_serialized(user, UserSerializer)
   end
 
-  def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Max-Age'] = "1728000"
-  end
-
   # If this is a preflight OPTIONS request, then short-circuit the
   # request, return only the necessary headers and return an empty
   # text/plain.
-
   def cors_preflight_check
     if request.method.to_s.downcase == 'options'
       headers['Access-Control-Allow-Origin'] = '*'
@@ -197,4 +191,17 @@ class SessionController < ApplicationController
       render :text => '', :content_type => 'text/plain'
     end
   end
+
+  def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    headers['Access-Control-Max-Age'] = "1728000"
+  end
+
+  # PH_CUSTOMIZATION: Don't verify the CSRF token on the CORS preflight
+  def verify_authenticity_token_on_destroy
+    return if request.method.to_s.downcase == 'options'
+    verify_authenticity_token
+  end
+
 end
