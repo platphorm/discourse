@@ -171,19 +171,19 @@ class SessionController < ApplicationController
 
 end
 
-# PH_CUSTOMIZATIONS: Collect all of the PH SessionController customizations here
+# PH_CUSTOMIZATION: Collect all of the PH SessionController customizations here
 # Consider putting them in the plugin
 class SessionController < ApplicationController
 
-  # PH_CUSTOMIZATIONS: The xhr? check does not seem reliable when issued from NF logouts
+  # PH_CUSTOMIZATION: The xhr? check does not seem reliable when issued from NF logouts
   # This is some ajax peculiarity, so add 'destroy' here
   skip_before_filter :check_xhr, only: ['sso', 'sso_login', 'destroy']
 
-  # PH_CUSTOMIZATIONS: Disable the CSRF check for the preflight on destroy
+  # PH_CUSTOMIZATION: Disable the CSRF check for the preflight on destroy
   skip_before_filter :verify_authenticity_token, only: :destroy
   before_filter :verify_authenticity_token_on_destroy, only: :destroy
 
-  # PH_CUSTOMIZATIONS: Get CORS working for session destruction (on logout in NF)
+  # PH_CUSTOMIZATION: Get CORS working for session destruction (on logout in NF)
   # See http://www.tsheffler.com/blog/?p=428
   before_filter :cors_preflight_check, only: :destroy
   after_filter :cors_set_access_control_headers, only: :destroy

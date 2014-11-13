@@ -6,7 +6,7 @@ class TopicPostCountSerializer < BasicUserSerializer
     object[:user].id
   end
 
-  # PH_CUSTOMIZATIONS: Needs to match BasicUserSerializer
+  # PH_CUSTOMIZATION: Needs to match BasicUserSerializer
   def name
     object[:user].name
   end
