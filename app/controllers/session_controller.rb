@@ -4,18 +4,7 @@ class SessionController < ApplicationController
 
   skip_before_filter :redirect_to_login_if_required
 
-  # PH_CUSTOMIZATIONS: The xhr? check does not seem reliable when issued from NF logouts
-  # This is some ajax peculiarity, so add 'destroy' here
-  skip_before_filter :check_xhr, only: ['sso', 'sso_login', 'destroy']
-
-  # PH_CUSTOMIZATIONS: Disable the CSRF check for the preflight on destroy
-  skip_before_filter :verify_authenticity_token, only: :destroy
-  before_filter :verify_authenticity_token_on_destroy, only: :destroy
-
-  # PH_CUSTOMIZATIONS: Get CORS working for session destruction (on logout in NF)
-  # See http://www.tsheffler.com/blog/?p=428
-  before_filter :cors_preflight_check, only: :destroy
-  after_filter :cors_set_access_control_headers, only: :destroy
+  skip_before_filter :check_xhr, only: ['sso', 'sso_login']
 
   def csrf
     render json: {csrf: form_authenticity_token }
@@ -179,6 +168,27 @@ class SessionController < ApplicationController
     log_on_user(user)
     render_serialized(user, UserSerializer)
   end
+
+end
+
+# PH_CUSTOMIZATIONS: Collect all of the PH SessionController customizations here
+# Consider putting them in the plugin
+class SessionController < ApplicationController
+
+  # PH_CUSTOMIZATIONS: The xhr? check does not seem reliable when issued from NF logouts
+  # This is some ajax peculiarity, so add 'destroy' here
+  skip_before_filter :check_xhr, only: ['sso', 'sso_login', 'destroy']
+
+  # PH_CUSTOMIZATIONS: Disable the CSRF check for the preflight on destroy
+  skip_before_filter :verify_authenticity_token, only: :destroy
+  before_filter :verify_authenticity_token_on_destroy, only: :destroy
+
+  # PH_CUSTOMIZATIONS: Get CORS working for session destruction (on logout in NF)
+  # See http://www.tsheffler.com/blog/?p=428
+  before_filter :cors_preflight_check, only: :destroy
+  after_filter :cors_set_access_control_headers, only: :destroy
+
+  private
 
   # PH_CUSTOMIZATION: Set CORS access control headers for preflights
   # If this is a preflight OPTIONS request, then short-circuit the
